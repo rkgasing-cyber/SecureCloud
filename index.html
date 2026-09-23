@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureCloud</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<section id="loginPage" class="page login-page">
+  <div class="login-box">
+    <div class="logo">☁</div>
+
+    <h1>SecureCloud</h1>
+    <p class="subtitle">Store. Share. Connect. Securely.</p>
+
+    <input id="email" type="email" placeholder="Email address">
+    <input id="password" type="password" placeholder="Password">
+
+    <button class="primary" onclick="login()">Login</button>
+
+    <div class="divider">OR</div>
+
+    <button class="google" onclick="demoLogin()">
+      🔵 Continue with Google
+    </button>
+
+    <button class="secondary" onclick="demoLogin()">
+      📱 Continue with Mobile
+    </button>
+
+    <p class="small">Prototype Demo</p>
+  </div>
+</section>
+
+
+<!-- MAIN APP -->
+<section id="appPage" class="page hidden">
+
+  <header>
+    <div class="brand">
+      <span>☁</span>
+      <strong>SecureCloud</strong>
+    </div>
+
+    <div class="profile">DR</div>
+  </header>
+
+  <main>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="screen">
+
+      <div class="welcome">
+        <div>
+          <p>Welcome back 👋</p>
+          <h1>Devraj</h1>
+        </div>
+
+        <button class="upload-btn" onclick="uploadDemo()">
+          ＋ Upload
+        </button>
+      </div>
+
+      <div class="storage-card">
+        <div>
+          <p>Storage</p>
+          <h2>3.2 GB / 10 GB</h2>
+        </div>
+
+        <div class="progress">
+          <div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Quick Access</h2>
+
+      <div class="quick-grid">
+        <div class="quick-card" onclick="showScreen('files')">
+          <span>📁</span>
+          <b>My Files</b>
+          <small>24 files</small>
+        </div>
+
+        <div class="quick-card" onclick="showScreen('shared')">
+          <span>🔗</span>
+          <b>Shared</b>
+          <small>8 files</small>
+        </div>
+
+        <div class="quick-card" onclick="showScreen('messages')">
+          <span>💬</span>
+          <b>Messages</b>
+          <small>3 chats</small>
+        </div>
+
+        <div class="quick-card" onclick="showScreen('live')">
+          <span>🔴</span>
+          <b>Live</b>
+          <small>Start stream</small>
+        </div>
+      </div>
+
+      <h2 class="section-title">Recent Files</h2>
+
+      <div id="recentFiles">
+
+        <div class="file-card">
+          <div class="file-icon pdf">PDF</div>
+
+          <div class="file-info">
+            <b>College_Project.pdf</b>
+            <small>2.4 MB • Today</small>
+          </div>
+
+          <span class="private">🔒 Private</span>
+
+          <button class="more" onclick="shareFile('College_Project.pdf')">⋮</button>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon image">IMG</div>
+
+          <div class="file-info">
+            <b>Project_Diagram.png</b>
+            <small>1.2 MB • Yesterday</small>
+          </div>
+
+          <span class="public">🌐 Shared</span>
+
+          <button class="more" onclick="shareFile('Project_Diagram.png')">⋮</button>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon doc">DOC</div>
+
+          <div class="file-info">
+            <b>Research_Notes.docx</b>
+            <small>850 KB • Yesterday</small>
+          </div>
+
+          <span class="private">🔒 Private</span>
+
+          <button class="more" onclick="shareFile('Research_Notes.docx')">⋮</button>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- FILES -->
+    <div id="files" class="screen hidden">
+
+      <div class="screen-title">
+        <div>
+          <h1>My Files</h1>
+          <p>Manage your documents</p>
+        </div>
+
+        <button class="upload-btn" onclick="uploadDemo()">＋ Upload</button>
+      </div>
+
+      <div class="search">
+        🔍
+        <input type="text" placeholder="Search files...">
+      </div>
+
+      <div id="fileList">
+
+        <div class="file-card">
+          <div class="file-icon pdf">PDF</div>
+
+          <div class="file-info">
+            <b>College_Project.pdf</b>
+            <small>2.4 MB</small>
+          </div>
+
+          <span class="private">🔒 Private</span>
+
+          <button class="more" onclick="shareFile('College_Project.pdf')">⋮</button>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon doc">DOC</div>
+
+          <div class="file-info">
+            <b>Research_Notes.docx</b>
+            <small>850 KB</small>
+          </div>
+
+          <span class="private">🔒 Private</span>
+
+          <button class="more" onclick="shareFile('Research_Notes.docx')">⋮</button>
+        </div>
+
+      </div>
+
+      <div class="merge-box">
+        <h3>📑 PDF Tools</h3>
+        <p>Select multiple PDFs and create one combined document.</p>
+        <button class="secondary" onclick="mergeDemo()">Merge PDF Files</button>
+      </div>
+
+    </div>
+
+
+    <!-- SHARED -->
+    <div id="shared" class="screen hidden">
+
+      <div class="screen-title">
+        <div>
+          <h1>Shared Files</h1>
+          <p>Files shared with you</p>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-icon pdf">PDF</div>
+
+        <div class="file-info">
+          <b>Electrical_Report.pdf</b>
+          <small>Shared by Rahul</small>
+        </div>
+
+        <span class="public">View</span>
+      </div>
+
+      <div class="file-card">
+        <div class="file-icon image">IMG</div>
+
+        <div class="file-info">
+          <b>Circuit_Diagram.png</b>
+          <small>Shared by Priya</small>
+        </div>
+
+        <span class="public">View</span>
+      </div>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+    <div id="messages" class="screen hidden">
+
+      <div class="screen-title">
+        <div>
+          <h1>Messages</h1>
+          <p>Private conversations</p>
+        </div>
+
+        <span class="encryption">🔐 E2E</span>
+      </div>
+
+      <div class="chat">
+
+        <div class="chat-user">
+          <div class="avatar">R</div>
+          <div>
+            <b>Rahul</b>
+            <small>Online</small>
+          </div>
+        </div>
+
+        <div id="chatMessages" class="chat-messages">
+
+          <div class="message received">
+            Hey! Can you send me the project PDF?
+          </div>
+
+          <div class="message sent">
+            Sure! I'll share it with you.
+          </div>
+
+        </div>
+
+        <div class="chat-input">
+          <input id="messageInput" placeholder="Write a message...">
+          <button onclick="sendMessage()">➤</button>
+        </div>
+
+      </div>
+
+      <p class="security-note">
+        🔐 Messages are shown as end-to-end encrypted in this prototype.
+      </p>
+
+    </div>
+
+
+    <!-- LIVE -->
+    <div id="live" class="screen hidden">
+
+      <div class="screen-title">
+        <div>
+          <h1>Live Streaming</h1>
+          <p>Start a private or public stream</p>
+        </div>
+      </div>
+
+      <div class="live-card">
+
+        <div class="live-camera">
+          <div>📹</div>
+          <p>Camera Preview</p>
+        </div>
+
+        <input id="streamTitle" placeholder="Stream title">
+
+        <label class="switch-row">
+          <span>🔒 Private Stream</span>
+          <input id="privateStream" type="checkbox" checked>
+        </label>
+
+        <button class="primary" onclick="startLive()">
+          🔴 Start Live
+        </button>
+
+        <div id="streamCode" class="stream-code hidden">
+          <p>Your private access code:</p>
+          <strong id="code"></strong>
+          <small>Share this code only with people you trust.</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav>
+
+    <button onclick="showScreen('dashboard')">
+      <span>⌂</span>
+      Home
+    </button>
+
+    <button onclick="showScreen('files')">
+      <span>📁</span>
+      Files
+    </button>
+
+    <button onclick="showScreen('messages')">
+      <span>💬</span>
+      Chat
+    </button>
+
+    <button onclick="showScreen('live')">
+      <span>🔴</span>
+      Live
+    </button>
+
+  </nav>
+
+</section>
+
+
+<!-- SHARE MODAL -->
+<div id="shareModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <h2>Share File</h2>
+
+    <p id="shareFileName"></p>
+
+    <input placeholder="Email or username">
+
+    <select>
+      <option>Can view</option>
+      <option>Can download</option>
+      <option>Can edit</option>
+    </select>
+
+    <label class="switch-row">
+      <span>🌐 Anyone with link</span>
+      <input type="checkbox">
+    </label>
+
+    <button class="primary" onclick="sendShare()">
+      Send Access
+    </button>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
