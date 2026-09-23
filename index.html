@@ -3,396 +3,489 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SecureCloud</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<section id="loginPage" class="page login-page">
-  <div class="login-box">
-    <div class="logo">☁</div>
+  <!-- ================= LOGIN / SIGNUP ================= -->
 
-    <h1>SecureCloud</h1>
-    <p class="subtitle">Store. Share. Connect. Securely.</p>
+  <section id="authPage" class="auth-page">
 
-    <input id="email" type="email" placeholder="Email address">
-    <input id="password" type="password" placeholder="Password">
+    <div class="auth-box">
 
-    <button class="primary" onclick="login()">Login</button>
-
-    <div class="divider">OR</div>
-
-    <button class="google" onclick="demoLogin()">
-      🔵 Continue with Google
-    </button>
-
-    <button class="secondary" onclick="demoLogin()">
-      📱 Continue with Mobile
-    </button>
-
-    <p class="small">Prototype Demo</p>
-  </div>
-</section>
-
-
-<!-- MAIN APP -->
-<section id="appPage" class="page hidden">
-
-  <header>
-    <div class="brand">
-      <span>☁</span>
-      <strong>SecureCloud</strong>
-    </div>
-
-    <div class="profile">DR</div>
-  </header>
-
-  <main>
-
-    <!-- DASHBOARD -->
-    <div id="dashboard" class="screen">
-
-      <div class="welcome">
-        <div>
-          <p>Welcome back 👋</p>
-          <h1>Devraj</h1>
-        </div>
-
-        <button class="upload-btn" onclick="uploadDemo()">
-          ＋ Upload
-        </button>
+      <div class="logo">
+        ☁️ <span>SecureCloud</span>
       </div>
 
-      <div class="storage-card">
-        <div>
-          <p>Storage</p>
-          <h2>3.2 GB / 10 GB</h2>
-        </div>
-
-        <div class="progress">
-          <div></div>
-        </div>
-      </div>
-
-      <h2 class="section-title">Quick Access</h2>
-
-      <div class="quick-grid">
-        <div class="quick-card" onclick="showScreen('files')">
-          <span>📁</span>
-          <b>My Files</b>
-          <small>24 files</small>
-        </div>
-
-        <div class="quick-card" onclick="showScreen('shared')">
-          <span>🔗</span>
-          <b>Shared</b>
-          <small>8 files</small>
-        </div>
-
-        <div class="quick-card" onclick="showScreen('messages')">
-          <span>💬</span>
-          <b>Messages</b>
-          <small>3 chats</small>
-        </div>
-
-        <div class="quick-card" onclick="showScreen('live')">
-          <span>🔴</span>
-          <b>Live</b>
-          <small>Start stream</small>
-        </div>
-      </div>
-
-      <h2 class="section-title">Recent Files</h2>
-
-      <div id="recentFiles">
-
-        <div class="file-card">
-          <div class="file-icon pdf">PDF</div>
-
-          <div class="file-info">
-            <b>College_Project.pdf</b>
-            <small>2.4 MB • Today</small>
-          </div>
-
-          <span class="private">🔒 Private</span>
-
-          <button class="more" onclick="shareFile('College_Project.pdf')">⋮</button>
-        </div>
-
-        <div class="file-card">
-          <div class="file-icon image">IMG</div>
-
-          <div class="file-info">
-            <b>Project_Diagram.png</b>
-            <small>1.2 MB • Yesterday</small>
-          </div>
-
-          <span class="public">🌐 Shared</span>
-
-          <button class="more" onclick="shareFile('Project_Diagram.png')">⋮</button>
-        </div>
-
-        <div class="file-card">
-          <div class="file-icon doc">DOC</div>
-
-          <div class="file-info">
-            <b>Research_Notes.docx</b>
-            <small>850 KB • Yesterday</small>
-          </div>
-
-          <span class="private">🔒 Private</span>
-
-          <button class="more" onclick="shareFile('Research_Notes.docx')">⋮</button>
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- FILES -->
-    <div id="files" class="screen hidden">
-
-      <div class="screen-title">
-        <div>
-          <h1>My Files</h1>
-          <p>Manage your documents</p>
-        </div>
-
-        <button class="upload-btn" onclick="uploadDemo()">＋ Upload</button>
-      </div>
-
-      <div class="search">
-        🔍
-        <input type="text" placeholder="Search files...">
-      </div>
-
-      <div id="fileList">
-
-        <div class="file-card">
-          <div class="file-icon pdf">PDF</div>
-
-          <div class="file-info">
-            <b>College_Project.pdf</b>
-            <small>2.4 MB</small>
-          </div>
-
-          <span class="private">🔒 Private</span>
-
-          <button class="more" onclick="shareFile('College_Project.pdf')">⋮</button>
-        </div>
-
-        <div class="file-card">
-          <div class="file-icon doc">DOC</div>
-
-          <div class="file-info">
-            <b>Research_Notes.docx</b>
-            <small>850 KB</small>
-          </div>
-
-          <span class="private">🔒 Private</span>
-
-          <button class="more" onclick="shareFile('Research_Notes.docx')">⋮</button>
-        </div>
-
-      </div>
-
-      <div class="merge-box">
-        <h3>📑 PDF Tools</h3>
-        <p>Select multiple PDFs and create one combined document.</p>
-        <button class="secondary" onclick="mergeDemo()">Merge PDF Files</button>
-      </div>
-
-    </div>
-
-
-    <!-- SHARED -->
-    <div id="shared" class="screen hidden">
-
-      <div class="screen-title">
-        <div>
-          <h1>Shared Files</h1>
-          <p>Files shared with you</p>
-        </div>
-      </div>
-
-      <div class="file-card">
-        <div class="file-icon pdf">PDF</div>
-
-        <div class="file-info">
-          <b>Electrical_Report.pdf</b>
-          <small>Shared by Rahul</small>
-        </div>
-
-        <span class="public">View</span>
-      </div>
-
-      <div class="file-card">
-        <div class="file-icon image">IMG</div>
-
-        <div class="file-info">
-          <b>Circuit_Diagram.png</b>
-          <small>Shared by Priya</small>
-        </div>
-
-        <span class="public">View</span>
-      </div>
-
-    </div>
-
-
-    <!-- MESSAGES -->
-    <div id="messages" class="screen hidden">
-
-      <div class="screen-title">
-        <div>
-          <h1>Messages</h1>
-          <p>Private conversations</p>
-        </div>
-
-        <span class="encryption">🔐 E2E</span>
-      </div>
-
-      <div class="chat">
-
-        <div class="chat-user">
-          <div class="avatar">R</div>
-          <div>
-            <b>Rahul</b>
-            <small>Online</small>
-          </div>
-        </div>
-
-        <div id="chatMessages" class="chat-messages">
-
-          <div class="message received">
-            Hey! Can you send me the project PDF?
-          </div>
-
-          <div class="message sent">
-            Sure! I'll share it with you.
-          </div>
-
-        </div>
-
-        <div class="chat-input">
-          <input id="messageInput" placeholder="Write a message...">
-          <button onclick="sendMessage()">➤</button>
-        </div>
-
-      </div>
-
-      <p class="security-note">
-        🔐 Messages are shown as end-to-end encrypted in this prototype.
+      <p class="tagline">
+        Your private space for files, conversations and ideas.
       </p>
 
-    </div>
+      <!-- LOGIN -->
 
+      <div id="loginBox">
 
-    <!-- LIVE -->
-    <div id="live" class="screen hidden">
+        <h1>Welcome back</h1>
+        <p class="muted">Login to your SecureCloud account.</p>
 
-      <div class="screen-title">
-        <div>
-          <h1>Live Streaming</h1>
-          <p>Start a private or public stream</p>
-        </div>
-      </div>
+        <form id="loginForm">
 
-      <div class="live-card">
+          <input
+            id="loginEmail"
+            type="email"
+            placeholder="Email address"
+            required
+          >
 
-        <div class="live-camera">
-          <div>📹</div>
-          <p>Camera Preview</p>
-        </div>
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password"
+            required
+          >
 
-        <input id="streamTitle" placeholder="Stream title">
+          <button type="submit" class="primary-btn">
+            Login
+          </button>
 
-        <label class="switch-row">
-          <span>🔒 Private Stream</span>
-          <input id="privateStream" type="checkbox" checked>
-        </label>
+        </form>
 
-        <button class="primary" onclick="startLive()">
-          🔴 Start Live
+        <button id="googleLoginBtn" class="google-btn">
+          Continue with Google
         </button>
 
-        <div id="streamCode" class="stream-code hidden">
-          <p>Your private access code:</p>
-          <strong id="code"></strong>
-          <small>Share this code only with people you trust.</small>
-        </div>
+        <p class="switch-text">
+          Don't have an account?
+          <button id="showSignup" class="link-btn">
+            Create account
+          </button>
+        </p>
 
       </div>
 
+
+      <!-- SIGNUP -->
+
+      <div id="signupBox" class="hidden">
+
+        <h1>Create account</h1>
+        <p class="muted">Create your SecureCloud account.</p>
+
+        <form id="signupForm">
+
+          <input
+            id="signupName"
+            type="text"
+            placeholder="Full name"
+            required
+          >
+
+          <input
+            id="signupEmail"
+            type="email"
+            placeholder="Email address"
+            required
+          >
+
+          <input
+            id="signupPassword"
+            type="password"
+            placeholder="Password (6+ characters)"
+            minlength="6"
+            required
+          >
+
+          <button type="submit" class="primary-btn">
+            Create account
+          </button>
+
+        </form>
+
+        <p class="switch-text">
+          Already have an account?
+          <button id="showLogin" class="link-btn">
+            Login
+          </button>
+        </p>
+
+      </div>
+
+      <p id="authMessage" class="auth-message"></p>
+
     </div>
 
-  </main>
+  </section>
 
 
-  <!-- BOTTOM NAVIGATION -->
-  <nav>
+  <!-- ================= MAIN APP ================= -->
 
-    <button onclick="showScreen('dashboard')">
-      <span>⌂</span>
-      Home
-    </button>
+  <section id="appPage" class="app-page hidden">
 
-    <button onclick="showScreen('files')">
-      <span>📁</span>
-      Files
-    </button>
+    <!-- HEADER -->
 
-    <button onclick="showScreen('messages')">
-      <span>💬</span>
-      Chat
-    </button>
+    <header class="topbar">
 
-    <button onclick="showScreen('live')">
-      <span>🔴</span>
-      Live
-    </button>
+      <div class="brand">
+        ☁️ SecureCloud
+      </div>
 
-  </nav>
+      <div class="user-area">
 
-</section>
+        <div id="userAvatar" class="avatar">
+          U
+        </div>
 
+        <span id="userName">
+          User
+        </span>
 
-<!-- SHARE MODAL -->
-<div id="shareModal" class="modal hidden">
+        <button id="logoutBtn" class="logout-btn">
+          Logout
+        </button>
 
-  <div class="modal-box">
+      </div>
 
-    <button class="close" onclick="closeModal()">×</button>
-
-    <h2>Share File</h2>
-
-    <p id="shareFileName"></p>
-
-    <input placeholder="Email or username">
-
-    <select>
-      <option>Can view</option>
-      <option>Can download</option>
-      <option>Can edit</option>
-    </select>
-
-    <label class="switch-row">
-      <span>🌐 Anyone with link</span>
-      <input type="checkbox">
-    </label>
-
-    <button class="primary" onclick="sendShare()">
-      Send Access
-    </button>
-
-  </div>
-
-</div>
+    </header>
 
 
-<script src="script.js"></script>
+    <!-- NAVIGATION -->
+
+    <nav class="main-nav">
+
+      <button class="nav-btn active" data-screen="dashboard">
+        🏠 Dashboard
+      </button>
+
+      <button class="nav-btn" data-screen="files">
+        📁 My Files
+      </button>
+
+      <button class="nav-btn" data-screen="shared">
+        🔗 Shared
+      </button>
+
+      <button class="nav-btn" data-screen="messages">
+        💬 Messages
+      </button>
+
+      <button class="nav-btn" data-screen="live">
+        🔴 Live
+      </button>
+
+    </nav>
+
+
+    <main class="content">
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <section id="dashboardScreen" class="screen">
+
+        <div class="welcome-card">
+
+          <p class="small-label">
+            SECURECLOUD
+          </p>
+
+          <h1>
+            Welcome, <span id="dashboardName">User</span>.
+          </h1>
+
+          <p>
+            Store, share and discuss your work in one private space.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+          <button class="feature-card" data-screen="files">
+            <span class="feature-icon">📁</span>
+            <h2>My Files</h2>
+            <p>Manage your personal files and documents.</p>
+          </button>
+
+          <button class="feature-card" data-screen="shared">
+            <span class="feature-icon">🔗</span>
+            <h2>Shared Files</h2>
+            <p>Control who can access your resources.</p>
+          </button>
+
+          <button class="feature-card" data-screen="messages">
+            <span class="feature-icon">🔐</span>
+            <h2>Private Chat</h2>
+            <p>Talk with other SecureCloud users.</p>
+          </button>
+
+          <button class="feature-card" data-screen="live">
+            <span class="feature-icon">🔴</span>
+            <h2>Live Room</h2>
+            <p>Create a private live room for your group.</p>
+          </button>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <div class="section-title">
+            <h2>Account information</h2>
+          </div>
+
+          <div class="account-info">
+
+            <p>
+              <strong>Name:</strong>
+              <span id="infoName">-</span>
+            </p>
+
+            <p>
+              <strong>Email:</strong>
+              <span id="infoEmail">-</span>
+            </p>
+
+            <p>
+              <strong>Account:</strong>
+              <span class="online-status">● Active</span>
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= FILES ================= -->
+
+      <section id="filesScreen" class="screen hidden">
+
+        <div class="screen-header">
+
+          <div>
+            <p class="small-label">STORAGE</p>
+            <h1>My Files</h1>
+          </div>
+
+          <button id="addFileBtn" class="primary-btn">
+            + Add File
+          </button>
+
+        </div>
+
+
+        <div class="notice">
+          📌 File records are stored in your SecureCloud database.
+          Actual cloud file storage will be connected separately.
+        </div>
+
+
+        <div id="fileList" class="file-list">
+
+          <div class="empty-state">
+            <div>📂</div>
+            <h2>No files yet</h2>
+            <p>Add a file record to get started.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= SHARED ================= -->
+
+      <section id="sharedScreen" class="screen hidden">
+
+        <div class="screen-header">
+
+          <div>
+            <p class="small-label">ACCESS CONTROL</p>
+            <h1>Shared Files</h1>
+          </div>
+
+        </div>
+
+        <div id="sharedList" class="file-list">
+
+          <div class="empty-state">
+            <div>🔗</div>
+            <h2>Nothing shared yet</h2>
+            <p>Files shared with you will appear here.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= MESSAGES ================= -->
+
+      <section id="messagesScreen" class="screen hidden">
+
+        <div class="screen-header">
+
+          <div>
+            <p class="small-label">COMMUNICATION</p>
+            <h1>Messages</h1>
+          </div>
+
+        </div>
+
+
+        <div class="chat-layout">
+
+          <aside class="chat-users">
+
+            <h3>Users</h3>
+
+            <div id="userList">
+              <p class="muted">
+                Loading users...
+              </p>
+            </div>
+
+          </aside>
+
+
+          <div class="chat-area">
+
+            <div id="chatHeader" class="chat-header">
+              Select a user to start chatting.
+            </div>
+
+            <div id="messagesList" class="messages-list">
+
+              <div class="empty-state">
+                💬
+                <p>Select another SecureCloud user.</p>
+              </div>
+
+            </div>
+
+
+            <form id="messageForm" class="message-form">
+
+              <input
+                id="messageInput"
+                type="text"
+                placeholder="Write a message..."
+                autocomplete="off"
+                disabled
+              >
+
+              <button
+                type="submit"
+                class="primary-btn"
+                disabled
+                id="sendMessageBtn"
+              >
+                Send
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= LIVE ================= -->
+
+      <section id="liveScreen" class="screen hidden">
+
+        <div class="screen-header">
+
+          <div>
+            <p class="small-label">REAL-TIME</p>
+            <h1>Live Rooms</h1>
+          </div>
+
+        </div>
+
+
+        <div class="live-card">
+
+          <div class="live-icon">
+            🔴
+          </div>
+
+          <h2>Create a SecureCloud Live Room</h2>
+
+          <p>
+            Create a public or private room that other users can join
+            from this website.
+          </p>
+
+          <input
+            id="liveTitle"
+            type="text"
+            placeholder="Live room title"
+          >
+
+          <label class="check-row">
+
+            <input
+              id="privateLive"
+              type="checkbox"
+            >
+
+            Private room
+
+          </label>
+
+          <button id="createLiveBtn" class="primary-btn">
+            Create Live Room
+          </button>
+
+          <div id="liveResult" class="live-result hidden"></div>
+
+        </div>
+
+
+        <div id="availableRooms" class="rooms-section">
+
+          <h2>Available rooms</h2>
+
+          <div id="roomList">
+
+            <div class="empty-state">
+              No live rooms currently available.
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- TOAST -->
+
+    <div id="toast" class="toast"></div>
+
+  </section>
+
+
+  <!-- Firebase SDK -->
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="script.js"></script>
 
 </body>
-</html>
+  </html>
